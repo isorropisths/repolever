@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0" />
+  <object class="GtkBox" id="target">
+    <property name="orientation">1</property>
+    <property name="valign">3</property>
+    <property name="halign">3</property>
+    <child>
+      <object class="GtkImage">
+        <property name="icon-name">gl-lightbulb-symbolic</property>
+        <property name="pixel-size">120</property>
+        <property name="margin-bottom">30</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Get started</property>
+        <property name="margin-bottom">30</property>
+        <style>
+          <class name="title-1" />
+        </style>
+      </object>
+    </child>
+    <child>
+      <object class="GtkLabel">
+        <property name="label" translatable="yes">Click Install and paste a GitHub repository link to add a package.</property>
+        <property name="wrap">true</property>
+        <property name="justify">center</property>
+        <property name="margin-bottom">20</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">1</property>
+        <property name="valign">3</property>
+        <property name="halign">3</property>
+         <child>
+          <object class="GtkButton" id="show-welcome-screen">
+            <property name="label" translatable="yes">Show welcome screen</property>
+            <property name="margin-bottom">10</property>
+            <style>
+              <class name="pill" />
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="open-preferences">
+            <property name="label" translatable="yes">Open Preferences</property>
+            <style>
+              <class name="pill" />
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </object>
+</interface>

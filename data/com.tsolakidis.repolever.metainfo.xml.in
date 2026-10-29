@@ -1,0 +1,491 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+    <id>com.tsolakidis.repolever</id>
+    <launchable type="desktop-id">com.tsolakidis.repolever.desktop</launchable>
+    <name>Repo Lever</name>
+    <summary>GitHub release packages for Linux</summary>
+    <url type="homepage">https://github.com/isorropisths/repolever</url>
+    <url type="bugtracker">https://github.com/isorropisths/repolever/issues</url>
+    <url type="vcs-browser">https://github.com/isorropisths/repolever</url>
+    <metadata_license>CC0-1.0</metadata_license>
+    <project_license>GPL-3.0-or-later</project_license>
+    <developer id="com.tsolakidis">
+      <name translatable="no">Ioannis Tsolakis</name>
+    </developer>
+    <branding>
+      <color type="primary" scheme_preference="light">#e6eaec</color>
+      <color type="primary" scheme_preference="dark">#33373a</color>
+    </branding>
+    <description>
+        <p>Repo Lever installs and updates .rpm and .deb packages published on GitHub releases. Paste a repository link, get notified when updates are available, and install them when you choose.</p>
+    </description>
+    <releases>
+        <release type="stable" version="1.0.0" date="2026-10-29">
+            <description>
+                <p>Repo Lever: install and update .rpm/.deb packages from GitHub releases.</p>
+            </description>
+        </release>
+        <release type="stable" version="4.6.2" date="2026-07-22:00:00Z">
+            <description>
+                <p>- Fixed an error with the configuration parser</p>
+            </description>
+        </release>
+        <release type="stable" version="4.6.1" date="2026-07-19:00:00Z">
+            <description>
+                <p>- Preserve user-defined exec arguments on app updates</p>
+            </description>
+        </release>
+         <release type="stable" version="4.6.0" date="2026-07-18:00:00Z">
+            <description>
+                <p>- Fixed an issue with the update manager</p>
+                <p>- Added json format for list updates and list installed apps</p>
+            </description>
+        </release>
+        <release type="stable" version="4.5.5" date="2026-06-28:00:00Z">
+            <description>
+                <p>- Fixed an issue with the update manager</p>
+            </description>
+        </release>
+        <release type="stable" version="4.5.4" date="2026-05-07:00:00Z">
+            <description>
+                <p>- Bug fix</p>
+            </description>
+        </release>
+        <release type="stable" version="4.5.3" date="2026-04-19:00:00Z">
+            <description>
+                <p>- Fixed an issue with Forgejo updates</p>
+            </description>
+        </release>
+        <release type="stable" version="4.5.2" date="2026-04-18:00:00Z">
+            <description>
+                <p>- Under the hood improvements to the update system</p>
+                <p>- Fixed an issue causing the allow prerelease toggle to ignore user preferences</p>
+                <p>- Fixed an issue with the background update checker</p>
+            </description>
+        </release>
+        <release type="stable" version="4.5.1" date="2026-04-17:00:00Z">
+            <description>
+                <p>- Under the hood improvements to the update system</p>
+                <p>- Fixed an issue causing the allow prerelease toggle to ignore user preferences</p>
+            </description>
+        </release>
+        <release type="stable" version="4.5.0" date="2026-04-16:00:00Z">
+            <description>
+                <p>- Under the hood improvements to the update system</p>
+            </description>
+        </release>
+        <release type="stable" version="4.4.9" date="2026-04-01:00:00Z">
+            <description>
+                <p>- Improved network detection logic</p>
+                <p>- Updated translations</p>
+            </description>
+        </release>
+        <release type="stable" version="4.4.5" date="2026-02-24:00:00Z">
+            <description>
+                <p>- Fixed an issue with the update system</p>
+            </description>
+        </release>
+        <release type="stable" version="4.4.3" date="2026-02-20:00:00Z">
+            <description>
+                <p>- Fixed an issue with the update system</p>
+            </description>
+        </release>
+        <release type="stable" version="4.4.2" date="2026-02-20:00:00Z">
+            <description>
+                <p>- Fixed a bug that caused the app to crash if there is no internet available</p>
+            </description>
+        </release>
+        <release type="stable" version="4.4.0" date="2026-02-19:00:00Z">
+            <description>
+                <p>- Added a minimal UI option when launching new AppImages</p>
+            </description>
+        </release>
+        <release type="stable" version="4.3.2" date="2026-02-18:00:00Z">
+            <description>
+                <p>- Fixed an issue causing the app website not to be displayed correctly</p>
+                <p>- Added support for X-AppImage-Name</p>
+            </description>
+        </release>
+        <release type="stable" version="4.3.1" date="2026-02-02:00:00Z">
+            <description>
+                <p>- Bug fix</p>
+            </description>
+        </release>
+        <release type="stable" version="4.3.0" date="2026-01-22:00:00Z">
+            <description>
+                <p>- Prevent app updates if an app is currently running</p>
+            </description>
+        </release>
+        <release type="stable" version="4.2.2" date="2026-01-16:00:00Z">
+            <description>
+                <p>- Bugfix</p>
+            </description>
+        </release>
+        <release type="stable" version="4.2.1" date="2025-12-16:00:00Z">
+            <description>
+                <p>- Bugfix for integrated update URLs</p>
+            </description>
+        </release>
+        <release type="stable" version="4.2.0" date="2025-12-11:00:00Z">
+            <description>
+                <p>- Added new CLI utility "set-update-source", which brings the new update UI to the terminal interface</p>
+            </description>
+        </release>
+        <release type="stable" version="4.1.1" date="2025-12-09:00:00Z">
+            <description>
+                <p>- Fixed an issue for some apps that were relying on the 7zz extraction method</p>
+            </description>
+        </release>
+        <release type="stable" version="4.1.0" date="2025-12-02:00:00Z">
+            <description>
+                <p>- Added Forgejo update system</p>
+            </description>
+        </release>
+        <release type="stable" version="4.0.0" date="2025-11-25:00:00Z">
+            <description>
+                <p>- Added FTP update system</p>
+                <p>- New update management UI</p>
+                <p>- New documentation website, still work in progress</p>
+                <p>- Faster app loading times for most of the appimages</p>
+                <p>- Better support for apps having dekstop actions</p>
+            </description>
+        </release>
+        <release type="stable" version="3.4.7" date="2025-10-30:00:00Z">
+            <description>
+                <p>- Bug fix</p>
+            </description>
+        </release>
+        <release type="stable" version="3.4.6" date="2025-10-29:00:00Z">
+            <description>
+                <p>- Improved desktop file support: added support for desktop actions</p>
+            </description>
+        </release>
+        <release type="stable" version="3.4.5" date="2025-10-09:00:00Z">
+            <description>
+                <p>- Fixed an issue happening on systems with more than one user</p>
+            </description>
+        </release>
+        <release type="stable" version="3.4.2" date="2025-08-09:00:00Z">
+            <description>
+                <p>- Fixed an issue when integrating apps from CLI</p>
+            </description>
+        </release>
+        <release type="stable" version="3.4.1" date="2025-08-09:00:00Z">
+            <description>
+                <p>- Added new command line option to unset update url</p>
+            </description>
+        </release>
+        <release type="stable" version="3.4.0" date="2025-07-31:00:00Z">
+            <description>
+                <p>- Added new command line option --set-update-url</p>
+                <p>- Update to Gnome Runtime 48</p>
+            </description>
+        </release>
+        <release type="stable" version="3.3.4" date="2025-07-04:00:00Z">
+            <description>
+                <p>- Fixed an issue caused by apps with spaces in their file names</p>
+            </description>
+        </release>
+        <release type="stable" version="3.3.3" date="2025-06-10:00:00Z">
+            <description>
+                <p>- Fixed an issue introduced with 3.3.1</p>
+                <p>- Fixed an issue causing some apps to be detected as always out-of-date</p>
+            </description>
+        </release>
+        <release type="stable" version="3.3.1" date="2025-06-10:00:00Z">
+            <description>
+                <p>- Fixed an issue causing app updates to delete the original app</p>
+            </description>
+        </release>
+        <release type="stable" version="3.3.0" date="2025-06-04:00:00Z">
+            <description>
+                <p>- Added support for Gitlab</p>
+                <p>- Added support for Codeberg</p>
+                <p>- Allow users to override the update url provided by the developer</p>
+            </description>
+        </release>
+        <release type="stable" version="3.2.2" date="2025-04-17:00:00Z">
+            <description>
+                <p>- Improved support for apps using squashfs</p>
+            </description>
+        </release>
+        <release type="stable" version="3.2.0" date="2025-04-14:00:00Z">
+            <description>
+                <p>- New feature: "Update all", for both the CLI and UI</p>
+                <p>- Fixed some issues for apps using dwarfs filesystem</p>
+            </description>
+        </release>
+        <release type="stable" version="3.1.0" date="2025-03-31:00:00Z">
+            <description>
+                <p>- Added support for AppImages using dwarfs filesystem</p>
+            </description>
+        </release>
+        <release type="stable" version="3.0.2" date="2025-03-07:00:00Z">
+            <description>
+                <p>- Fixed an issue causing the "Keep both" option to override the old desktop file</p>
+            </description>
+        </release>
+        <release type="stable" version="3.0.1" date="2025-02-10:00:00Z">
+            <description>
+                <p>- Fixed an issue causing custom Github update urls being ignored when checking for updates</p>
+            </description>
+        </release>
+        <release type="stable" version="3.0.0" date="2025-01-30:00:00Z">
+            <description>
+                <p>- Gear Lever now has a brand new command-line interface for managing and updating apps!</p>
+            </description>
+        </release>
+        <release type="stable" version="2.3.0" date="2024-11-20:00:00Z">
+            <description>
+                <p>- Added a confirmation modal when removing an app</p>
+            </description>
+        </release>
+        <release type="stable" version="2.2.1" date="2024-11-11:00:00Z">
+            <description>
+                <p>- Fixed an issue causing update errors for some apps</p>
+            </description>
+        </release>
+        <release type="stable" version="2.2.0" date="2024-11-05:00:00Z">
+            <description>
+                <p>- Added checks to download the correct AppImage for the current system architecture</p>
+            </description>
+        </release>
+        <release type="stable" version="2.1.0" date="2024-10-01:00:00Z">
+            <description>
+                <p>- Added an option to fetch updates in the background at system startup</p>
+            </description>
+        </release>
+         <release type="stable" version="2.0.7" date="2024-09-03:00:00Z">
+            <description>
+                <p>- Fixed incorrect url detection for some links</p>
+            </description>
+        </release>
+        <release type="stable" version="2.0.6" date="2024-08-08:00:00Z">
+            <description>
+                <p>- Updated appimage type detection according to the specs</p>
+                <p>- Moved the "Cancel download" button to avoid unintentional errors</p>
+            </description>
+        </release>
+        <release type="stable" version="2.0.5" date="2024-07-04:00:00Z">
+            <description>
+                <p>- Added checks to detect if Gear Lever is running as a flatpak</p>
+                <p>- Bug fix</p>
+            </description>
+        </release>
+        <release type="stable" version="2.0.4" date="2024-07-04:00:00Z">
+            <description>
+                <p>- Improved checking for static update url</p>
+                <p>- Do not append md5 hashes to filenames anymore</p>
+            </description>
+        </release>
+        <release type="stable" version="2.0.3" date="2024-07-04:00:00Z">
+            <description>
+                <p>- Added support for apps that do not specify icons in their desktop file</p>
+            </description>
+        </release>
+        <release type="stable" version="2.0.1" date="2024-07-04:00:00Z">
+            <description>
+                <p>- Accept globe characters in the release names of custom Github update links</p>
+                <p>- Fixed an issue causing crashes on systems that do not support gtk-launch</p>
+                <p>- Fixed an issue causing crashes when attempting to open apps with non-ascii characters in their names</p>
+                <p>- Fixed an issue causing some appimages to be considered invalid because of the lack of an AppRun file</p>
+            </description>
+        </release>
+        <release type="stable" version="2.0.0" date="2024-07-04:00:00Z">
+            <description>
+                <p>- BIG NEWS: Version 2.0 brings the update management! Gear Lever can now fetch updates from embedded or custom sources and update your apps automatically</p>
+            </description>
+        </release>
+        <release type="stable" version="1.6.5" date="2024-06-27:00:00Z">
+            <description>
+                <p>- Improved support for NixOS</p>
+            </description>
+        </release>
+        <release type="stable" version="1.6.4" date="2024-06-20:00:00Z">
+            <description>
+                <p>- Fixed an issue causing the app to crash if the "strings" util is not available</p>
+            </description>
+        </release>
+        <release type="stable" version="1.6.3" date="2024-06-20:00:00Z">
+            <description>
+                <p>- Keep environment variables when updating an app with the "Replace" option</p>
+                <p>- Fixed an issue causing app to override themself when updating with "Keep" option</p>
+            </description>
+        </release>
+        <release type="stable" version="1.6.2" date="2024-06-18:00:00Z">
+            <description>
+                <p>- Fixed bugs introduced with 1.6.1 causing the app to crash at startup</p>
+                <p>- Fixed an issue causing multi-install to fail</p>
+            </description>
+        </release>
+        <release type="stable" version="1.6.1" date="2024-06-18:00:00Z">
+            <description>
+                <p>- Added Appimage Type 3 detection</p>
+                <p>- Added error warning when libfuse is missing on the host system</p>
+            </description>
+        </release>
+        <release type="stable" version="1.6.0" date="2024-06-04:00:00Z">
+            <description>
+                <p>- Improved app analysis performance</p>
+                <p>- Improved debug logs</p>
+                <p>- Fixed some issues with special characters in filenames</p>
+            </description>
+        </release>
+        <release type="stable" version="1.5.2" date="2024-03-28:00:00Z">
+            <description>
+                <p>- Fixed an issue causing appimage icons not being detected for some packages</p>
+            </description>
+        </release>
+        <release type="stable" version="1.5.0" date="2024-03-17:00:00Z">
+            <description>
+                <p>- Added an option in the preferences to save appimages without the "gearlever_" prefex</p>
+                <p>- Use native tools to launch desktop files when possible</p>
+            </description>
+        </release>
+        <release type="stable" version="1.4.3" date="2024-03-12:00:00Z">
+            <description>
+                <p>- Fixed an issue that was preventing Gear Lever from opening appimages when invoked by a file manager</p>
+                <p>- Added some debug logs to better identify issues</p>
+                <p>- Updated p7zip lib</p>
+                <p>- Fixed an issue causing apps to be launched with desktop files exec codes (like %U)</p>
+            </description>
+        </release>
+        <release type="stable" version="1.4.2" date="2024-03-12:00:00Z">
+            <description>
+                <p>- Fixed an issue that was preventing Gear Lever from opening appimages when invoked by a file manager</p>
+                <p>- Added some debug logs to better identify issues</p>
+                <p>- Updated p7zip lib</p>
+            </description>
+        </release>
+        <release type="stable" version="1.4.1" date="2024-02-22:00:00Z">
+            <description>
+                <p>- Added the ability to install multiple appimage files at once, both with DnD and the file selector</p>
+                <p>- Performance improvements</p>
+            </description>
+        </release>
+        <release type="stable" version="1.4.0" date="2024-02-21:00:00Z">
+            <description>
+                <p>- Added the ability to install multiple appimage files at once, both with DnD and the file selector</p>
+            </description>
+        </release>
+        <release type="stable" version="1.3.0" date="2024-02-14:00:00Z">
+            <description>
+                <p>- Gear Lever now remembers the maximized state of the window, useful for devices with smaller screens</p>
+                <p>- Fixed a bug causing appimages not opening if they were not installed</p>
+            </description>
+        </release>
+        <release type="stable" version="1.2.1" date="2024-01-26:00:00Z">
+            <description>
+                <p>- Fixed app icons not being saved with their file extension; please click "Reload metadata" if you are having issues with our desktop environment.</p>
+            </description>
+        </release>
+        <release type="stable" version="1.2.0" date="2024-01-11:00:00Z">
+            <description>
+                <p>- Trash AppImage files instead of deleting them</p>
+            </description>
+        </release>
+        <release type="stable" version="1.1.0" date="2024-01-09:00:00Z">
+            <description>
+                <p>- Added support for creating and editing environment variables</p>
+                <p>- Bug fix and improvements</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.18" date="2023-12-11:00:00Z">
+            <description>
+                <p>- Added support for creating and editing command line arguments</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.17" date="2023-10-28:00:00Z">
+            <description>
+                <p>- [Fix]: preserve file names when updating using "replace" option</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.16" date="2023-10-28:00:00Z">
+            <description>
+                <p>- Bug fix</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.15" date="2023-10-25:00:00Z">
+            <description>
+                <p>- Minor UI updates</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.13" date="2023-10-20:00:00Z">
+            <description>
+                <p>- Added a shortcut to open the containing folder of files</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.12" date="2023-10-05T00:00:00Z">
+            <description>
+                <p>- Fixed an issue causing Gear Lever be set as the default app to open Flatpak files</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.11" date="2023-10-04T00:00:00Z">
+            <description>
+                <p>- Fixed some icons not syncing with theme</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.10" date="2023-09-03T00:00:00Z">
+            <description>
+                <p>- Updated app name</p>
+                <p>- Fixed an error causing app icons to be saved with the .appimage extension</p>
+                <p>- Fixed an error causing a crash if the applications folder does not exists</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.9" date="2023-08-17T00:00:00Z">
+            <description>
+                <p>- Use native widgets for navitagion, allowing go-back gestures with swipes and mouse buttons</p>
+                <p>- Fixed an error for which the app version was not being updated when reloading metadata</p>
+                <p>- Fixed empty space when an app does not have a description</p>
+                <p>- Fixed "Launch" button for terminal apps being show clickable</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.8" date="2023-06-18T00:00:00Z">
+            <description>
+                <p>- Updated Russian translation</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.7" date="2023-06-16T00:00:00Z">
+            <description>
+                <p>- Updated Italian translation</p>
+                <p>- Updated Spanish translation</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.5" date="2023-06-15T00:00:00Z">
+            <description>
+                <p>- Added Italian translation</p>
+                <p>- Added Russian translation</p>
+                <p>- Added French translation</p>
+                <p>- Added Spanish translation</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.4" date="2023-06-14T00:00:00Z">
+            <description>
+                <p>- Fixed an error for which some apps will not show up in the system menu</p>
+            </description>
+        </release>
+        <release type="stable" version="1.0.0" date="2023-06-13T00:00:00Z">
+            <description>
+                <p>First release on Flathub</p>
+            </description>
+        </release>
+    </releases>
+    <screenshots>
+        <screenshot type="default">
+            <caption>Application showcase</caption>
+            <image type="source">
+                https://raw.githubusercontent.com/isorropisths/repolever/master/docs/gearlever1.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Application showcase</caption>
+            <image type="source">
+                https://raw.githubusercontent.com/isorropisths/repolever/master/docs/gearlever2.png</image>
+        </screenshot>
+        <screenshot>
+            <caption>Application showcase</caption>
+            <image type="source">
+                https://raw.githubusercontent.com/isorropisths/repolever/master/docs/gearlever3.png</image>
+        </screenshot>
+    </screenshots>
+    <content_rating type="oars-1.0" />
+</component>

@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Repo Lever
+Comment=Install and update .rpm/.deb packages from GitHub releases
+Exec=gearlever
+Icon=com.tsolakidis.repolever
+Terminal=false
+Type=Application
+Categories=GTK;Utility;
+StartupNotify=true
+Keywords=GitHub;RPM;DEB;Package;

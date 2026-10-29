@@ -1,0 +1,31 @@
+name: Flatpak Build
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: bilelmoussaoui/flatpak-github-actions:gnome-44
+      options: --privileged
+
+    steps:
+      - name: Generate release tag
+        id: tag
+        run: |
+          echo "::set-output name=release_tag::gearlever_nightly_$(date +"%Y.%m.%d_%H-%M")"
+      - uses: actions/checkout@v3
+      - uses: flatpak/flatpak-github-actions/flatpak-builder@v6.1
+        with:
+          bundle: repolever-nightly.flatpak
+          manifest-path: com.tsolakidis.repolever.json
+      - name: Publish pre-release package
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.tag.outputs.release_tag }}
+          prerelease: true
+          files: repolever-nightly.flatpak
+

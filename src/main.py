@@ -1,0 +1,223 @@
+# main.py
+#
+# Copyright 2022 Lorenzo Paderi
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+import sys
+import gi
+import logging
+import shutil
+import os
+
+from .models.Settings import Settings
+from .lib.ini_config import Config
+from .lib import json_config
+from .models.UpdateManagerChecker import UpdateManagerChecker
+from .lib.constants import APP_ID, APP_NAME, APP_DATA, TMP_DIR, APP_RESOURCE_PREFIX
+from .providers.providers_list import package_provider
+from .GearleverWindow import GearleverWindow
+from  .WelcomeScreen import WelcomeScreen
+from .preferences import Preferences
+from  .Cli import Cli
+
+gi.require_version('Gtk', '4.0')
+gi.require_version('Adw', '1')
+
+from gi.repository import Gtk, Gio, Adw, Gdk, GLib, GObject # noqa
+
+LOG_FILE_MAX_N_LINES = 5000
+LOG_FOLDER = os.path.join(GLib.get_user_state_dir(), APP_NAME)
+LOG_FILE = os.path.join(LOG_FOLDER, f'{APP_NAME}.log')
+
+class GearleverApplication(Adw.Application):
+    """The main application singleton class."""
+
+    def __init__(self, version, pkgdatadir):
+        super().__init__(application_id=APP_ID)
+        self.create_action('about', self.on_about_action)
+        self.create_action('preferences', self.on_preferences_action, ['<primary>comma'])
+        self.create_action('open_log_file', self.on_open_log_file)
+        self.create_action('open_welcome_screen', self.on_open_welcome_screen, ['F1'])
+        self.win = None
+        self.version = version
+        self.add_main_option_entries(Cli.options)
+
+    def do_handle_local_options(self, options):
+        return -1
+
+    def do_startup(self):
+        logging.info(f'\n\n---- Application startup | version {self.version}')
+        Adw.Application.do_startup(self)
+
+        settings = Settings.settings
+
+        logging.debug('::: Settings')
+        for k in settings.props.settings_schema.list_keys():
+            logging.debug(k + ': ' + str(settings.get_value(k)))
+
+        logging.debug('::: End settings')
+
+        css_provider = Gtk.CssProvider()
+        css_provider.load_from_resource(f'{APP_RESOURCE_PREFIX}/assets/style.css')
+        Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(), css_provider, Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION)
+
+    def do_activate(self):
+        """Called when the application is activated.
+
+        We raise the application's main window, creating it if
+        necessary.
+        """
+        self.win = self.props.active_window
+
+        if not self.win:
+            self.win = GearleverWindow(application=self)
+            self.win.connect('close-request', self.on_close_request)
+
+        print('Logging to file ' + LOG_FILE)
+        self.win.present()
+
+    def do_open(self, files: list[Gio.File], n_files: int, data):
+        self.do_activate()
+        if self.win:
+            self.win.on_install_from_link()
+
+    def on_about_action(self, widget, data):
+        about = Adw.AboutDialog(
+            application_name='Repo Lever',
+            version=self.version,
+            developers=['Lorenzo Paderi', 'Repo Lever'],
+            copyright='2024 Lorenzo Paderi',
+            application_icon=APP_ID,
+            issue_url='https://github.com/isorropisths/repolever',
+            comments=_('Install and update .rpm and .deb packages from GitHub releases.'),
+        )
+
+        about.set_translator_credits(_("translator_credits"))
+        if self.win:
+            about.present(self.win)
+
+    def on_preferences_action(self, widget, _):
+        """Callback for the app.preferences action."""
+        pref = Preferences()
+        pref.connect('close-request', lambda w: self.win.on_show_installed_list() if self.win else None)
+        pref.present()
+
+    def create_action(self, name, callback, shortcuts=None):
+        """Add an application action.
+
+        Args:
+            name: the name of the action
+            callback: the function to be called when the action is
+            activated
+            shortcuts: an optional list of accelerators
+        """
+        action = Gio.SimpleAction.new(name, None)
+        action.connect("activate", callback)
+        self.add_action(action)
+        if shortcuts:
+            self.set_accels_for_action(f"app.{name}", shortcuts)
+
+    def on_open_log_file(self, widget, event):
+        if not self.win:
+            return
+
+        log_gfile = Gio.File.new_for_path(LOG_FOLDER)
+        launcher = Gtk.FileLauncher.new(log_gfile)
+        launcher.launch()
+
+    def on_close_request(self, *args):
+        if os.path.exists(TMP_DIR):
+            shutil.rmtree(TMP_DIR)
+        return False
+
+    def on_open_welcome_screen(self, widget, event):
+        tutorial = WelcomeScreen()
+        if self.win:
+            tutorial.present(self.win)
+
+def migrate_to_v2_config():
+    bg_update_k = 'fetch-updates-in-background'
+    settings_conf = json_config.read_json_config('settings')
+    Config.parser[Config.parser.default_section][bg_update_k] = Config.return_boolean(settings_conf.get(bg_update_k, False))
+    installed_apps = package_provider.list_installed()
+
+    for app in installed_apps:
+        app_conf = json_config.read_config_for_app(app)
+        Config.set_app_config(app, {
+            'website': app_conf.get('website', '')
+        })
+
+        update_url_manager: str | None = app_conf.get('manager', None)
+
+        if update_url_manager:
+            model = None
+            if update_url_manager:
+                model = UpdateManagerChecker.get_model_by_name(update_url_manager)
+
+            if model:
+                update_manager = model(el=app)
+                if update_manager:
+                    update_manager.migrate_v2()
+
+    Config.write()
+
+def main(version, pkgdatadir):
+    """The application's entry point."""
+    APP_DATA['PKGDATADIR'] = pkgdatadir
+
+    LOG_FILE = os.path.join(LOG_FOLDER, f'{APP_NAME}.log')
+
+    if not os.path.exists(LOG_FOLDER):
+        os.makedirs(LOG_FOLDER)
+
+    if not os.path.exists(TMP_DIR):
+        os.makedirs(TMP_DIR)
+
+    # Clear log file if it's too big
+    log_file_size = 0
+    if os.path.exists(LOG_FILE): 
+        with open(LOG_FILE, 'r') as f:
+            log_file_size = len(f.readlines())
+        
+        if log_file_size > LOG_FILE_MAX_N_LINES:
+            with open(LOG_FILE, 'w+') as f:
+                f.write('')
+
+    logging.basicConfig(
+        filename=LOG_FILE,
+        filemode='a',
+        encoding='utf-8',
+        format='%(asctime)s %(levelname)-1s [%(filename)s:%(lineno)d] %(message)s',
+        level= logging.DEBUG if Settings.settings.get_boolean('debug-logs') else logging.INFO,
+        force=True
+    )
+
+    if not Config.exists():
+        migrate_to_v2_config()
+
+    # old_configs_to_delete = ['settings', 'apps']
+    # for name in old_configs_to_delete:
+    #     p = os.path.join(GLib.get_user_config_dir(), f'{name}.json')
+        
+    #     if os.path.exists(p):
+    #         os.remove(p)
+
+    Config.refresh()
+
+    if len(sys.argv) > 1:
+        Cli.from_options(sys.argv)
+
+    app = GearleverApplication(version, pkgdatadir)
+    app.run(sys.argv)

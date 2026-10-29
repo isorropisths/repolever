@@ -1,0 +1,38 @@
+.border-bottom-fix :last-child {
+    border-bottom: 0px;
+}
+
+.app-listbox-item {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.provider-icon {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 12px;
+    padding-right: 12px;
+    border-radius: 40px;
+}
+
+.transparent-bg {
+    background-color: transparent;
+    border-color: transparent;
+    outline: transparent;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.title-xl {
+    font-size: 100px;
+}
+
+.big-btn {
+    padding: 10px;
+}
