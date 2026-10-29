@@ -8,6 +8,9 @@ on:
     paths:
       - 'meson.build'
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,7 +23,7 @@ jobs:
       - name: Generate release tag
         id: tag
         run: |
-          echo "::set-output name=release_tag::$(cat meson.build | grep "\sversion.*" | grep -oE "'([^']+)'" | sed "s/'//g")"
+          echo "release_tag=$(grep 'version:' meson.build | grep -oE "'[^']+'" | tr -d "'")" >> "$GITHUB_OUTPUT"
       - uses: flatpak/flatpak-github-actions/flatpak-builder@v6
         with:
           bundle: repolever-${{ steps.tag.outputs.release_tag }}-x86_64.flatpak
